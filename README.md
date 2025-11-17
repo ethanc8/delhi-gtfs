@@ -1,8 +1,16 @@
 # Cleaned-up GTFS feed for Delhi
 
+## Download data
+
+* <https://ethanc8.github.io/delhi-gtfs/bus.zip>
+* <https://ethanc8.github.io/delhi-gtfs/metro.zip>
+
 ## Changes from source data
 
-None yet.
+* The bus data now expires on 2027-01-01, since we still have realtime data for buses
+  * Even the official published timetables were never accurate
+  * The realtime data cannot be used without a static feed
+* The route IDs for the Metro have been consolidated, the route names are changed to be more user-friendly, and the route colors have been added
 
 ## Source data
 
