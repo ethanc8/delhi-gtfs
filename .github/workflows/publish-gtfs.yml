@@ -1,0 +1,44 @@
+name: Publish GTFS ZIP to GitHub Pages
+
+on:
+  push:
+    paths:
+      - "bus/**"
+      - "metro/**"
+      - ".github/workflows/publish-gtfs.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write  # needed to push to gh-pages
+
+concurrency:
+  group: publish-gtfs
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Zip ONLY the contents of gtfs/, so files are at the root of the archive
+      - name: Create ZIP with flat top-level
+        run: |
+          set -euo pipefail
+          mkdir -p public
+          cd bus
+          zip -r ../public/bus.zip .
+          cd metro
+          zip -r ../public/metro.zip .
+          cd -
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: public
+          publish_branch: gh-pages
+          force_orphan: true
