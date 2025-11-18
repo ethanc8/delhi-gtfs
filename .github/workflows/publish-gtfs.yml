@@ -23,6 +23,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          lfs: true
+      
+      - name: Checkout LFS objects
+        run: git lfs checkout
 
       # Zip ONLY the contents of gtfs/, so files are at the root of the archive
       - name: Create ZIP with flat top-level
