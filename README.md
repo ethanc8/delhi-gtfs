@@ -11,6 +11,7 @@
   * Even the official published timetables were never accurate
   * The realtime data cannot be used without a static feed
 * The route IDs for the Metro have been consolidated, the route names are changed to be more user-friendly, and the route colors have been added
+  * The colors were taken from [the INAT map of Delhi](https://www.inat.fr/metro/delhi/), since the colors are similar to the official map but are more distinct and work better together.
 
 ## Source data
 
